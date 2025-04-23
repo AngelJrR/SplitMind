@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Puzzle : MonoBehaviour
+public class Puzzle : MonoBehaviour, I_Puzzle
 {
     public PuzzleListener Listener;
     bool solved = false;
@@ -22,21 +22,23 @@ public class Puzzle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        solved = true;
-        done();
+      //  solved = true;
+       // done();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        solved = false;
-        done();
+       // solved = false;
+       // done();
     }
 
-    public void done()
-    {
-        Listener.check(solved);
-    }
+   
 
     public Puzzle GetPuzzle()
         {return this;}
+
+    public void done(bool solved)
+    {
+        Listener.check(solved);
+    }
 }
