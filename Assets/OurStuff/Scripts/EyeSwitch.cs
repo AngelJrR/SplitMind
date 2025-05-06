@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class EyeSwitch : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject first;
-    public GameObject second;
+    public XROrigin first;
+    public XROrigin second;
     public int timer = 5;
     public GameObject firstPOS;
     public GameObject secondPOS;
     public GameObject Cube;
     bool onFirst = true;
 
+    public GameObject otherrightcamera;
+   // public XROrigin org;
+
     bool blocking = false;
     GameObject which;
+
+
 
     void Start()
     {
@@ -24,10 +30,30 @@ public class EyeSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (Input.GetKeyDown(KeyCode.Space))
             switching();
         if (blocking)
+        {
+
+            if (onFirst)
+            {
+                second.transform.position = first.transform.position;
+                second.transform.rotation = first.transform.rotation;
+            }
+            else
+            {
+                first.transform.position = second.transform.position;
+                first.transform.rotation = second.transform.rotation;
+            }
+            /*
             Cube.transform.position = which.transform.position;
+            if(first.gameObject != null)
+            Cube.transform.rotation = first.transform.rotation;
+            else Cube.transform.rotation = second.transform.rotation;
+            */
+        }
     }
 
     void switching()
@@ -52,16 +78,31 @@ public class EyeSwitch : MonoBehaviour
         blocking = true;
         if (onFirst)
         {
-            which = firstPOS;
+            //firstPOS.gameObject.SetActive(true);
+            //secondPOS.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(.4f);
+
+            first.gameObject.SetActive(false);
+            second.gameObject.SetActive(true);
             onFirst = false;
+            
         }
         else
         {
-            which = secondPOS;
+           // firstPOS.gameObject.SetActive(false);
+           // secondPOS.gameObject.SetActive(true);
+            yield return new WaitForSeconds(.4f);
+            first.gameObject.SetActive(true);
+            second.gameObject.SetActive(false);
             onFirst = true;
+
         }
         yield return new WaitForSeconds(timer);
         StartCoroutine(Nintendoswitch());
 
     }
+
+
+
 }
