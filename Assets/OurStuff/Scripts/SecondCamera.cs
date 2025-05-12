@@ -38,7 +38,7 @@ public class SecondCamera : MonoBehaviour
 
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement))
         {
-            Quaternion yaw = Quaternion.Euler(0, firstPOS.gameObject.transform.eulerAngles.y,0);
+          //  Quaternion yaw = Quaternion.Euler(0, firstPOS.gameObject.transform.eulerAngles.y,0);
             x = movement.x;
             y = movement.y;
             if (fight == 1 && x > 0)
@@ -50,9 +50,13 @@ public class SecondCamera : MonoBehaviour
                 y = 0;
             else if (fight == 4 && y < 0)
                 y = 0;
-            Vector3 direction = yaw * new Vector3(x, 0, y);
+            //            Vector3 direction = yaw * new Vector3(x, 0, y);
+
+            Vector3 direction = x * transform.right + y * transform.forward;
+            direction.y = 0;
+            Debug.Log(direction);
             transform.position += (direction * moveSpeed * Time.deltaTime);
-            Debug.Log(transform.forward * movement.y);
+           // Debug.Log(transform.forward * movement.y);
                                   //new Vector3 (Mathf.Lerp(-transform.forward, transform.forward, movement.x) * moveSpeed, 0, movement.y * moveSpeed);
            
         }

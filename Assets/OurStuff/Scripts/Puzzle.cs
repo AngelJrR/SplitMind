@@ -37,8 +37,17 @@ public class Puzzle : MonoBehaviour, I_Puzzle
     public Puzzle GetPuzzle()
         {return this;}
 
-    public void done(bool solved)
+    public void done(bool check)
     {
-        Listener.check(solved);
+        if (check && !solved)
+        {
+            solved = true;
+            Listener.check(solved);
+        }
+        else if (!check && solved)
+        {
+            solved = false;
+            Listener.check(solved);
+        }
     }
 }

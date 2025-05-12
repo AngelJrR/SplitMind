@@ -8,9 +8,11 @@ public class EyeSwitch : MonoBehaviour
     // Start is called before the first frame update
     public XROrigin first;
     public XROrigin second;
+    public Camera firstC;
+    public Camera secondC;
     public int timer = 5;
-    public GameObject firstPOS;
-    public GameObject secondPOS;
+    public GameObject third;
+    public GameObject fourth;
     public GameObject Cube;
     bool onFirst = true;
 
@@ -24,7 +26,6 @@ public class EyeSwitch : MonoBehaviour
 
     void Start()
     {
-        which = firstPOS;
     }
 
     // Update is called once per frame
@@ -32,20 +33,22 @@ public class EyeSwitch : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            switching();
-        if (blocking)
-        {
+        //if (Input.GetKeyDown(KeyCode.Space))
+          //  switching();
+      
 
             if (onFirst)
             {
-                second.transform.position = first.transform.position;
-                second.transform.rotation = first.transform.rotation;
-            }
+                secondC.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
+            
+                fourth.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
+                
+        }
             else
             {
-                first.transform.position = second.transform.position;
-                first.transform.rotation = second.transform.rotation;
+                third.transform.SetPositionAndRotation(secondC.transform.position, secondC.transform.rotation);
+            firstC.transform.SetPositionAndRotation(secondC.transform.position, secondC.transform.rotation);
+            
             }
             /*
             Cube.transform.position = which.transform.position;
@@ -53,7 +56,7 @@ public class EyeSwitch : MonoBehaviour
             Cube.transform.rotation = first.transform.rotation;
             else Cube.transform.rotation = second.transform.rotation;
             */
-        }
+        
     }
 
     void switching()
@@ -84,7 +87,9 @@ public class EyeSwitch : MonoBehaviour
             yield return new WaitForSeconds(.4f);
 
             first.gameObject.SetActive(false);
+            third.gameObject.SetActive(false);
             second.gameObject.SetActive(true);
+            fourth.gameObject.SetActive(true);
             onFirst = false;
             
         }
@@ -94,7 +99,9 @@ public class EyeSwitch : MonoBehaviour
            // secondPOS.gameObject.SetActive(true);
             yield return new WaitForSeconds(.4f);
             first.gameObject.SetActive(true);
+            third.gameObject.SetActive(true);
             second.gameObject.SetActive(false);
+            fourth.gameObject.SetActive(false);
             onFirst = true;
 
         }

@@ -30,6 +30,9 @@ public class PuzzleListener : MonoBehaviour
         if(solved)
             allSolved++;
         else allSolved--;
+
+        Debug.Log("cgejcing");
+
         if (allSolved == puzzles.Count)
         { ready = true;
             Debug.Log("Im ready");
