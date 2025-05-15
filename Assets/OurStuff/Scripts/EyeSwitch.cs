@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.XR;
+
+
+
+[RequireComponent(typeof(InputData))]
 
 public class EyeSwitch : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    private InputData _inputData;
+
     public XROrigin first;
     public XROrigin second;
     public Camera firstC;
@@ -26,17 +34,23 @@ public class EyeSwitch : MonoBehaviour
 
     void Start()
     {
+        _inputData = GetComponent<InputData>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
 
         //if (Input.GetKeyDown(KeyCode.Space))
-          //  switching();
-      
-
+        //  switching();
+        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed))
+        {
+            
+            Debug.Log("hi"); 
+        
+        }
             if (onFirst)
             {
                 secondC.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);

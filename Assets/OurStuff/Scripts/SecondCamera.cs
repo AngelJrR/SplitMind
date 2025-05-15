@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 using UnityEngine.XR;
 using Unity.XR.CoreUtils;
+using UnityEngine.UIElements;
 
 
 [RequireComponent(typeof(InputData))]
@@ -26,15 +27,22 @@ public class SecondCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 144;
         _inputData = GetComponent<InputData>();
 
         starting = firstPOS.transform.position;
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
-
+        this.transform.rotation = firstPOS.transform.rotation;
+        transform.Rotate(0,0,.5f);
 
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement))
         {
@@ -60,7 +68,6 @@ public class SecondCamera : MonoBehaviour
                                   //new Vector3 (Mathf.Lerp(-transform.forward, transform.forward, movement.x) * moveSpeed, 0, movement.y * moveSpeed);
            
         }
-        this.transform.rotation = firstPOS.transform.rotation;
 
         /*
         if (moveable)
