@@ -6,11 +6,14 @@ public class Mole : MonoBehaviour
 {
     public int position;
     public WhackAMole spawny;
+    public int type;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(rise());
+        if(type == 1)
+            StartCoroutine(bomb());
     }
 
     // Update is called once per frame
@@ -29,9 +32,22 @@ public class Mole : MonoBehaviour
 
     }
 
+    IEnumerator bomb()
+    {
+        
+            yield return new WaitForSeconds(5f);
+        spawny.removeNum(position);
+
+        Destroy(gameObject);
+
+    }
+
+
     private void OnCollisionEnter(Collision collision)
     {
         spawny.removeNum(position);
+        if(type == 1)
+            Debug.Log("Idiot");
         Destroy(gameObject);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ComputerCode : MonoBehaviour
+public class ComputerCode : MonoBehaviour, I_Solvy
 {
 
     int position = 0;
@@ -43,5 +43,9 @@ public class ComputerCode : MonoBehaviour
         }
     }
 
-
+    public void solve(bool solved)
+    {
+        if(solved) 
+            text.gameObject.SetActive(true);
+    }
 }

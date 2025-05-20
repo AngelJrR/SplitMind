@@ -6,6 +6,7 @@ public class WhackAMole : MonoBehaviour
 {
     public List<Transform> spawns = new List<Transform>();
     public GameObject Moles;
+    public GameObject Bombs;
     List<int> ints = new List<int>();
 
     // Start is called before the first frame update
@@ -30,8 +31,9 @@ public class WhackAMole : MonoBehaviour
         Vector3 position = new Vector3(0,0,0);
         int index;
         int counting = 0;
+        int type;
         index = Random.Range(0, spawns.Count);
-
+        type = Random.Range(0, 2);
         while (!found)
         {
             if (ints.Count == 0)
@@ -40,7 +42,10 @@ public class WhackAMole : MonoBehaviour
                 position = spawns[index].position;
                 found = true;
                 counting = 0;
-                GameObject newMole = Instantiate(Moles, position, Quaternion.identity);
+                GameObject newMole;
+                if(type == 0)
+                    newMole = Instantiate(Moles, position, Quaternion.identity);
+                else newMole = Instantiate(Bombs, position, Quaternion.identity);
                 newMole.GetComponent<Mole>().position = index;
                 newMole.GetComponent<Mole>().spawny = this;
             }
@@ -65,7 +70,10 @@ public class WhackAMole : MonoBehaviour
                 position = spawns[index].position;
                 found = true;
                 counting = 0;
-                GameObject newMole = Instantiate(Moles, position, Quaternion.identity);
+                GameObject newMole;
+                if (type == 0)
+                    newMole = Instantiate(Moles, position, Quaternion.identity);
+                else newMole = Instantiate(Bombs, position, Quaternion.identity);
                 newMole.GetComponent<Mole>().position = index;
                 newMole.GetComponent<Mole>().spawny = this;
 

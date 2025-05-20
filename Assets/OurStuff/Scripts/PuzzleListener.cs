@@ -8,6 +8,8 @@ public class PuzzleListener : MonoBehaviour
     public List<Puzzle> puzzles = new List<Puzzle>();
     bool ready = false;
     int allSolved = 0;
+    public GameObject solver;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class PuzzleListener : MonoBehaviour
         if (allSolved == puzzles.Count)
         { ready = true;
             Debug.Log("Im ready");
+            solver.GetComponent<I_Solvy>().solve(true);
         }
 
         /*
