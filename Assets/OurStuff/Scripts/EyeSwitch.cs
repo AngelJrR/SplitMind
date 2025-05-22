@@ -43,8 +43,8 @@ public class EyeSwitch : MonoBehaviour
     {
 
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //  switching();
+        if (Input.GetKeyDown(KeyCode.Space))
+          switching();
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed))
         {
             
@@ -120,7 +120,7 @@ public class EyeSwitch : MonoBehaviour
 
         }
         yield return new WaitForSeconds(timer);
-        StartCoroutine(Nintendoswitch());
+        //StartCoroutine(Nintendoswitch());
 
     }
 

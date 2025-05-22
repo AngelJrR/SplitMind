@@ -1,31 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class WhackAMole : MonoBehaviour
+public class WhackAMole : MonoBehaviour, I_Solvy
 {
     public List<Transform> spawns = new List<Transform>();
     public GameObject Moles;
     public GameObject Bombs;
     List<int> ints = new List<int>();
+    int points = 0;
+    I_Puzzle puzzle;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        puzzle = this.GetComponent<I_Puzzle>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.S))
-            spawnMoles();
     }
 
 
     void spawnMoles()
     {
         bool found = true;
+
+
         if (ints.Count < 9)
          found = false;
         Vector3 position = new Vector3(0,0,0);
@@ -84,8 +90,17 @@ public class WhackAMole : MonoBehaviour
                 
             }
         }
-       
+        StartCoroutine(starting());
     }
+
+    IEnumerator starting()
+    {
+        float timer = Random.Range(0, 2f);
+        yield return new WaitForSeconds(timer);
+
+        spawnMoles();
+    }
+
 
     public void removeNum(int posi)
     {
@@ -98,4 +113,21 @@ public class WhackAMole : MonoBehaviour
         }
         */
     }
+
+    public void solve(bool solved)
+    {
+        if(solved)
+            StartCoroutine(starting());
+
+    }
+
+    public void ChangePoints(int change)
+    {
+        points += change;
+        if (points > 10)
+            puzzle.done(true);
+
+    }
+
+
 }

@@ -46,8 +46,14 @@ public class Mole : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         spawny.removeNum(position);
-        if(type == 1)
+        if (type == 1)
+        {
             Debug.Log("Idiot");
+            spawny.ChangePoints(-1);
+        }
+        else
+            spawny.ChangePoints(1);
+
         Destroy(gameObject);
     }
 }

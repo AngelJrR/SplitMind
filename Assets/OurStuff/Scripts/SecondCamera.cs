@@ -62,7 +62,7 @@ public class SecondCamera : MonoBehaviour
 
             Vector3 direction = x * transform.right + y * transform.forward;
             direction.y = 0;
-            Debug.Log(direction);
+            //Debug.Log(direction);
             transform.position += (direction * moveSpeed * Time.deltaTime);
            // Debug.Log(transform.forward * movement.y);
                                   //new Vector3 (Mathf.Lerp(-transform.forward, transform.forward, movement.x) * moveSpeed, 0, movement.y * moveSpeed);
