@@ -42,13 +42,22 @@ public class SecondCamera : MonoBehaviour
     void Update()
     {
         this.transform.rotation = firstPOS.transform.rotation;
-        transform.Rotate(0,0,.5f);
+        //transform.Rotate(0,0,.5f);
 
-        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement))
+        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement) || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
           //  Quaternion yaw = Quaternion.Euler(0, firstPOS.gameObject.transform.eulerAngles.y,0);
-            x = movement.x;
-            y = movement.y;
+          Vector2 movement2 = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                x = Input.GetAxis("Horizontal");
+                y = Input.GetAxis("Vertical");
+            }
+            else
+            {
+                x = movement.x;
+                y = movement.y;
+            }
             if (fight == 1 && x > 0)
                     x = 0;
 
@@ -128,6 +137,16 @@ public class SecondCamera : MonoBehaviour
     {
         fight = 0;
         
+    }
+
+
+    void doubleCheck()
+    {
+        //Vector3 direction = x * transform.right + y * transform.forward;
+
+       // if(transform.position.x - 0)
+      //  transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+
     }
 }
 

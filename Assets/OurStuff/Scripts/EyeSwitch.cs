@@ -43,7 +43,7 @@ public class EyeSwitch : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.P))
           switching();
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed))
         {
