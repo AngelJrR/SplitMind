@@ -30,7 +30,7 @@ public class ChangeSize : MonoBehaviour
             {
                 if (type == 0)
                 {
-                    ugh.transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
+                    ugh.transform.position = new Vector3(transform.position.x, .5f, transform.position.z);
 
                     other.GetComponent<CharacterController>().radius = .05f;
                     other.GetComponent<CharacterController>().height = .5f;

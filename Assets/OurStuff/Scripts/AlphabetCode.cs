@@ -16,7 +16,18 @@ public class AlphabetCode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        codes.Add("A" + "B" + "C" + "D" + "E" + "L" + "M" + "N" + "O" + "P");
+        
+        codes.Add("A");
+        codes.Add("B");
+        codes.Add("C");
+        codes.Add("D");
+        codes.Add("E");
+        codes.Add("L");
+        codes.Add("M");
+        codes.Add("N");
+        codes.Add("O");
+        codes.Add("P");
+
     }
 
     // Update is called once per frame

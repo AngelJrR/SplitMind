@@ -22,6 +22,7 @@ public class ChangePosition : MonoBehaviour
     {
         if (other.gameObject.tag == "Camera3")
         {
+            Debug.Log("Wjaofmqwlm");
             other.gameObject.transform.position = position;
             other.gameObject.transform.Rotate(90,0,0);
         }

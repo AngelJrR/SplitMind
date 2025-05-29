@@ -119,7 +119,7 @@ public class EyeSwitch : MonoBehaviour
             onFirst = true;
 
         }
-        yield return new WaitForSeconds(timer);
+        //yield return new WaitForSeconds(timer);
         //StartCoroutine(Nintendoswitch());
 
     }
