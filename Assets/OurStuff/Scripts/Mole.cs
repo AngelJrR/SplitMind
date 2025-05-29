@@ -13,9 +13,10 @@ public class Mole : MonoBehaviour
     void Start()
     {
         StartCoroutine(rise());
+        StartCoroutine(bomb());
+
         if (type == 1)
         {
-            StartCoroutine(bomb());
             StartCoroutine(hitbox());
         }
 

@@ -185,10 +185,9 @@ GameObject:
   - component: {fileID: 5419331889293473514}
   - component: {fileID: 2043066480405472099}
   - component: {fileID: 377291013443947822}
-  - component: {fileID: 5987046419311178627}
   - component: {fileID: 2568558871357428631}
   m_Layer: 0
-  m_Name: Push Button
+  m_Name: PushButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +281,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2568558871357428631}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: done
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -374,25 +385,6 @@ MonoBehaviour:
   m_ApplyIfChildIsTarget: 1
   m_ClampToMaxDistance: 1
   m_MaxDistance: 0.045
---- !u!114 &5987046419311178627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4922582553321831162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8299829f08db38f47899739492220cb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mRen: {fileID: 8096250840339590077}
-  mColors:
-  - {fileID: 2100000, guid: 2c4c69a87962a4645b895fc0a4d8d7b0, type: 2}
-  - {fileID: 2100000, guid: 0317d5c1041e0d042be02ffd91820c8d, type: 2}
-  - {fileID: 2100000, guid: 4208d057bf34581488a1ceb4f02e2655, type: 2}
-  - {fileID: 2100000, guid: f24d3e26bc7cb704c8d50e5bbd5cc6b6, type: 2}
-  goal: {fileID: 0}
 --- !u!114 &2568558871357428631
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,6 +20,10 @@ public class ChangePosition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.transform.position = position;
+        if (other.gameObject.tag == "Camera3")
+        {
+            other.gameObject.transform.position = position;
+            other.gameObject.transform.Rotate(90,0,0);
+        }
     }
 }

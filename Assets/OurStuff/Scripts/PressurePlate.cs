@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
+    public GameObject target;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject == target)
         {
             this.TryGetComponent(out I_Puzzle puzzle);
             puzzle.done(false);

@@ -22,7 +22,7 @@ public class SecondCamera : MonoBehaviour
     float fight = 0;
     public float moveSpeed = .2f;
     public Camera rig;
-
+    public int jump;
 
     // Start is called before the first frame update
     void Start()
@@ -77,7 +77,11 @@ public class SecondCamera : MonoBehaviour
                                   //new Vector3 (Mathf.Lerp(-transform.forward, transform.forward, movement.x) * moveSpeed, 0, movement.y * moveSpeed);
            
         }
-
+        if (Input.GetKeyDown(KeyCode.J)) 
+        {
+           // transform.position += Vector3.up * jump;
+        }
+        
         /*
         if (moveable)
         {
