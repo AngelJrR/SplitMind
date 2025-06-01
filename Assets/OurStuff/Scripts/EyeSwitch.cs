@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 
 
 
@@ -29,8 +31,11 @@ public class EyeSwitch : MonoBehaviour
 
     bool blocking = false;
     GameObject which;
+    public InputActionReference primaryButton;
+    bool ugh = false;
 
-
+    public Vector3 leftRes;
+    public Vector3 rightRes;
 
     void Start()
     {
@@ -45,12 +50,18 @@ public class EyeSwitch : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
           switching();
-        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed))
+        if (Input.GetKeyDown(KeyCode.R))
+            resetting();
+        //if (_inputData._leftController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out bool pressed) && !ugh)
+
+        if (primaryButton.action.triggered && !ugh)
         {
-            
-            Debug.Log("hi"); 
-        
+            //  ControllerButton.PrimaryButton
+            Debug.Log("hello");
+            ugh = true;
         }
+
+        else ugh = false;
             if (onFirst)
             {
                 secondC.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
@@ -125,5 +136,18 @@ public class EyeSwitch : MonoBehaviour
     }
 
 
+    void resetting()
+    {
+        first.transform.position = leftRes;
+        fourth.transform.position = leftRes;
+        second.transform.position = rightRes;
+        third.transform.position = rightRes;
+    }
 
+    public void newRes(Vector3 newPos, int which)
+    {
+        if(which == 0)
+        leftRes = newPos;
+        else  rightRes = newPos;
+    }
 }
