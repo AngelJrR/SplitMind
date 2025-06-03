@@ -20,9 +20,10 @@ public class SecondCamera : MonoBehaviour
     float x;
     float y;
     float fight = 0;
-    public float moveSpeed = .2f;
+    public float moveSpeed = 0f;
     public Camera rig;
     public int jump;
+    public bool lookingDown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,10 +42,12 @@ public class SecondCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         this.transform.rotation = firstPOS.transform.rotation;
-        //transform.Rotate(0,0,.5f);
+        if (lookingDown)
+            transform.Rotate(90,0,0);
 
-        if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement))// || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            if (_inputData._leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement) || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
           //  Quaternion yaw = Quaternion.Euler(0, firstPOS.gameObject.transform.eulerAngles.y,0);
           Vector2 movement2 = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));

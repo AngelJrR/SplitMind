@@ -64,7 +64,7 @@ public class EyeSwitch : MonoBehaviour
         else ugh = false;
             if (onFirst)
             {
-                secondC.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
+                second.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
             
                 fourth.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
                 
@@ -72,7 +72,7 @@ public class EyeSwitch : MonoBehaviour
             else
             {
                 third.transform.SetPositionAndRotation(secondC.transform.position, secondC.transform.rotation);
-            firstC.transform.SetPositionAndRotation(secondC.transform.position, secondC.transform.rotation);
+            first.transform.SetPositionAndRotation(secondC.transform.position, secondC.transform.rotation);
             
             }
             /*
@@ -142,6 +142,10 @@ public class EyeSwitch : MonoBehaviour
         fourth.transform.position = leftRes;
         second.transform.position = rightRes;
         third.transform.position = rightRes;
+        first.transform.rotation = Quaternion.identity;
+        fourth.transform.rotation= Quaternion.identity;
+        second.transform.rotation= Quaternion.identity;
+        third.transform.rotation = Quaternion.identity;
     }
 
     public void newRes(Vector3 newPos, int which)

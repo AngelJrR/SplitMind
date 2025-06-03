@@ -25,6 +25,7 @@ public class ChangePosition : MonoBehaviour
             Debug.Log("Wjaofmqwlm");
             other.gameObject.transform.position = position;
             other.gameObject.transform.Rotate(90,0,0);
+            other.GetComponent<SecondCamera>().lookingDown = true;
         }
     }
 }

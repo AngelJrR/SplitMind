@@ -50,8 +50,8 @@ public class WhackAMole : MonoBehaviour, I_Solvy
                 counting = 0;
                 GameObject newMole;
                 if(type == 0)
-                    newMole = Instantiate(Moles, position, Quaternion.identity);
-                else newMole = Instantiate(Bombs, position, Quaternion.identity);
+                    newMole = Instantiate(Moles, position, transform.rotation);
+                else newMole = Instantiate(Bombs, position, transform.rotation);
                 newMole.GetComponent<Mole>().position = index;
                 newMole.GetComponent<Mole>().spawny = this;
             }

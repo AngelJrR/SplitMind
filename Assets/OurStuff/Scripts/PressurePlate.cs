@@ -25,6 +25,12 @@ public class PressurePlate : MonoBehaviour
             this.TryGetComponent(out I_Puzzle puzzle);
             puzzle.done(true);
         }
+
+        if (other.gameObject == target)
+        {
+            this.TryGetComponent(out I_Puzzle puzzle);
+            puzzle.done(true);
+        }
     }
 
 
