@@ -790,6 +790,15 @@
                     "processors": "",
                     "interactions": "Press(behavior=1)",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "LeftSecondary",
+                    "type": "Button",
+                    "id": "b4f47368-1922-4dcc-a002-924c7a64fac4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -966,6 +975,28 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "LeftPrimary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "11942e0f-9cf6-41d3-8372-ea0cc1592972",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftSecondary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb39642c-74ff-4b8d-8141-ade27724d543",
+                    "path": "<XRController>{LeftHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "LeftSecondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

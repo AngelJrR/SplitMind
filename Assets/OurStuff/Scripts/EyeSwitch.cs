@@ -23,7 +23,11 @@ public class EyeSwitch : MonoBehaviour
     public int timer = 5;
     public GameObject third;
     public GameObject fourth;
-    public GameObject Cube;
+    public GameObject Cube1;
+    public GameObject Cube2;
+    public GameObject where1;
+    public GameObject where2;
+
     bool onFirst = true;
 
     public GameObject otherrightcamera;
@@ -32,6 +36,8 @@ public class EyeSwitch : MonoBehaviour
     bool blocking = false;
     GameObject which;
     public InputActionReference primaryButton;
+    public InputActionReference secondaryButton;
+
     bool ugh = false;
 
     public Vector3 leftRes;
@@ -54,17 +60,31 @@ public class EyeSwitch : MonoBehaviour
             resetting();
         //if (_inputData._leftController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out bool pressed) && !ugh)
 
-        if (primaryButton.action.triggered && !ugh)
+        if (primaryButton.action.triggered)// && !ugh)
         {
+            switching();
+
             //  ControllerButton.PrimaryButton
             Debug.Log("hello");
-            ugh = true;
+           // ugh = true;
         }
 
-        else ugh = false;
-            if (onFirst)
+        if (secondaryButton.action.triggered)// && !ugh)
+        {
+            resetting();
+
+            //  ControllerButton.PrimaryButton
+            Debug.Log("hello");
+            // ugh = true;
+        }
+
+        // else ugh = false;
+
+
+
+        if (onFirst)
             {
-                second.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
+                secondC.transform.SetPositionAndRotation(third.transform.position, firstC.transform.rotation);
             
                 fourth.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
                 
@@ -72,16 +92,15 @@ public class EyeSwitch : MonoBehaviour
             else
             {
                 third.transform.SetPositionAndRotation(secondC.transform.position, secondC.transform.rotation);
-            first.transform.SetPositionAndRotation(secondC.transform.position, secondC.transform.rotation);
+            firstC.transform.SetPositionAndRotation(fourth.transform.position, secondC.transform.rotation);
             
             }
-            /*
-            Cube.transform.position = which.transform.position;
-            if(first.gameObject != null)
-            Cube.transform.rotation = first.transform.rotation;
-            else Cube.transform.rotation = second.transform.rotation;
-            */
-        
+        if(Cube1 != null)
+        Cube1.transform.SetPositionAndRotation(where1.transform.position, firstC.transform.rotation);
+
+        if (Cube2 != null)
+            Cube2.transform.SetPositionAndRotation(where2.transform.position, secondC.transform.rotation);
+       
     }
 
     void switching()
@@ -103,6 +122,10 @@ public class EyeSwitch : MonoBehaviour
              second.targetDisplay = 1;
          }
         */
+       // firstC.transform.rotation = Quaternion.identity;
+       // secondC.transform.rotation = Quaternion.identity;
+       // third.transform.rotation = Quaternion.identity;
+      //  fourth.transform.rotation = Quaternion.identity;
         blocking = true;
         if (onFirst)
         {
@@ -116,7 +139,10 @@ public class EyeSwitch : MonoBehaviour
             second.gameObject.SetActive(true);
             fourth.gameObject.SetActive(true);
             onFirst = false;
-            
+            Cube1.gameObject.SetActive(false);
+        
+            Cube2.gameObject.SetActive(true);
+
         }
         else
         {
@@ -128,7 +154,9 @@ public class EyeSwitch : MonoBehaviour
             second.gameObject.SetActive(false);
             fourth.gameObject.SetActive(false);
             onFirst = true;
-
+            Cube1.gameObject.SetActive(true);
+ 
+            Cube2.gameObject.SetActive(false);
         }
         //yield return new WaitForSeconds(timer);
         //StartCoroutine(Nintendoswitch());

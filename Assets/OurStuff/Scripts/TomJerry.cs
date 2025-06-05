@@ -30,23 +30,28 @@ public class TomJerry : MonoBehaviour, I_Solvy
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Camera3")
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Camera3" || other.gameObject.tag == "Camera4")
         {
             if (!once)
             {
                 if (type == 0)
                 {
                     other.transform.position = ugh;
-                    dyno.moveSpeed = 1;
-                    dyno2.moveSpeed = 1;
+                    dyno.moveSpeed = 2.5f;
+                    dyno2.moveSpeed = 2.5f;
+                    Debug.Log("Lefty");
+                    if(other.GetComponent<SecondCamera>() != null)
+                    other.GetComponent<SecondCamera>().moveSpeed = 1f;
 
 
                 }
                 else
                 {
                     other.transform.position = ugh;
-                    other.GetComponent<SecondCamera>().moveSpeed = .3f;
-                    secy.moveSpeed = .3f;
+                    if (other.GetComponent<SecondCamera>() != null)
+                    other.GetComponent<SecondCamera>().moveSpeed = 1f;
+                    secy.moveSpeed = 1f;
+                    Debug.Log("Rightty");
                 }
 
                 //once = true;
