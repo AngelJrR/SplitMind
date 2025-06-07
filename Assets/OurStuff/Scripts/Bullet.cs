@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position -= transform.up * Time.deltaTime * 4;
+        transform.position -= transform.up * Time.deltaTime * 30;
     }
 
     IEnumerator deletSelf()

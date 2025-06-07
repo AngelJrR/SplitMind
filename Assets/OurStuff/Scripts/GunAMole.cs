@@ -10,19 +10,22 @@ public class GunAMole : MonoBehaviour
     public GameObject Bottles;
     public GameObject Bombs;
     List<int> ints = new List<int>();
+
     List<GameObject> objectives = new List<GameObject>();
+
 
     int points = 0;
     I_Puzzle puzzle;
 
     int bombs = 0;
 
+    public BombChecking bb;
+
     // Start is called before the first frame update
     void Start()
     {
         puzzle = this.GetComponent<I_Puzzle>();
-        spawnMoles();
-
+        StartCoroutine(why());
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class GunAMole : MonoBehaviour
     void spawnMoles()
     {
         bool found = true;
+        points = 0;
 
 
         if (ints.Count < 9)
@@ -42,7 +46,7 @@ public class GunAMole : MonoBehaviour
         int index;
         int counting = 0;
         float type;
-        index = Random.Range(0, 10);
+        index = Random.Range(0, 9);
         type = Random.Range(0f, 1f);
         while (!found)
         {
@@ -58,11 +62,12 @@ public class GunAMole : MonoBehaviour
                 GameObject newMole;
                 if (type >= .3f)
                     newMole = Instantiate(Bottles, position, transform.rotation);
-                else newMole = Instantiate(Bombs, position, transform.rotation); bombs++;
+                else { newMole = Instantiate(Bombs, position, transform.rotation); bombs++; bb.addBomb(index); }
                 newMole.GetComponent<Bottles>().position = index;
                 newMole.GetComponent<Bottles>().spawny = this;
                 objectives.Add(newMole);
-                Debug.Log(message: "qawodhkwqbkjwqbnd>");
+                bb.increaseCount();
+               // Debug.Log(message: "qawodhkwqbkjwqbnd>");
 
             }
             else if(ints.Count == 9)
@@ -93,33 +98,42 @@ public class GunAMole : MonoBehaviour
                 GameObject newMole;
                 if (type >= .3f)
                     newMole = Instantiate(Bottles, position, transform.rotation);
-                else newMole = Instantiate(Bombs, position, transform.rotation); bombs++;
+                else { newMole = Instantiate(Bombs, position, transform.rotation); bombs++; bb.addBomb(index); }
                 newMole.GetComponent<Bottles>().position = index;
                 newMole.GetComponent<Bottles>().spawny = this;
                 objectives.Add(newMole);
-                Debug.Log(message: "qawodhkwqbkjwqbnd");
+                // Debug.Log(message: "qawodhkwqbkjwqbnd");
+                bb.increaseCount();
             }
-
             if (found)
             {
 
             }
+
         }
+
     }
 
-   
+    IEnumerator why()
+    {
+        yield return new WaitForSeconds(.5f);
+        spawnMoles();
+    }
 
     public void removeNum(int posi)
     {
+       // Debug.Log(bom.Count);
+        
+            foreach (int i in bb.getBomb())
+            {
+            if (posi == i)
+            {
+                bb.delet();
 
-        ints.Remove(posi);
-        /*
-        foreach(int i in ints)
-        { 
-           if(posi == ints[i])
-           ints.Remove(i);
-        }
-        */
+                break;
+            }
+            }
+        
     }
 
 
@@ -127,15 +141,18 @@ public class GunAMole : MonoBehaviour
     public void ChangePoints(int change)
     {
         points += change;
+        Debug.Log(points);
         if (change < 0)
         {
             foreach (GameObject i in objectives)
                 Destroy(i);
             ints.Clear();
-            spawnMoles();
+            StartCoroutine(why());
+
             points = 0;
+            puzzle.done(false);
         }
-        if (points == 9-bombs)
+        if (points == 9 - bb.howMany)
             puzzle.done(true);
 
     }

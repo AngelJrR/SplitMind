@@ -36,12 +36,15 @@ public class Bottles : MonoBehaviour
             if (type == 1)
             {
                 Debug.Log("Idiot");
-                spawny.ChangePoints(-1);
+                //  spawny.ChangePoints(-1);
             }
             else
+            {
                 spawny.ChangePoints(1);
+                Destroy(gameObject);
 
-            Destroy(gameObject);
+            }
+
         }
     }
 
@@ -59,7 +62,7 @@ public class Bottles : MonoBehaviour
 
     IEnumerator hitbox()
     {
-        yield return new WaitForSeconds(1.9f);
+        yield return new WaitForSeconds(.5f);
         col.enabled = true;
     }
 }

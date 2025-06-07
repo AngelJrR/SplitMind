@@ -32,7 +32,10 @@ public class PuzzleListener : MonoBehaviour
     {
         if(solved)
             allSolved++;
-        else allSolved--;
+        else if(allSolved - 1 < 0)
+            allSolved = 0;
+        else
+            allSolved--;
 
         Debug.Log("cgejcing");
 
