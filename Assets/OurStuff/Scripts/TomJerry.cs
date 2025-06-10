@@ -13,7 +13,7 @@ public class TomJerry : MonoBehaviour, I_Solvy
     public DynamicMoveProvider dyno;
     public DynamicMoveProvider dyno2;
     public SecondCamera secy;
-
+    public CharacterController chars;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +42,7 @@ public class TomJerry : MonoBehaviour, I_Solvy
                     Debug.Log("Lefty");
                     if(other.GetComponent<SecondCamera>() != null)
                     other.GetComponent<SecondCamera>().moveSpeed = 1f;
+                    chars.stepOffset += -.1f;
 
 
                 }

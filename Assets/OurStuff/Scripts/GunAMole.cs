@@ -4,7 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class GunAMole : MonoBehaviour
+public class GunAMole : MonoBehaviour, I_Solvy
 {
     public List<Transform> spawns = new List<Transform>();
     public GameObject Bottles;
@@ -157,7 +157,11 @@ public class GunAMole : MonoBehaviour
 
     }
 
-
+    public void solve(bool solved)
+    {
+        transform.position -= transform.up * 3;
+        ChangePoints(-1);
+    }
 }
 
 

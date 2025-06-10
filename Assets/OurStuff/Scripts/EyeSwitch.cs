@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 
@@ -10,7 +12,7 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 
 [RequireComponent(typeof(InputData))]
 
-public class EyeSwitch : MonoBehaviour
+public class EyeSwitch : MonoBehaviour, I_Solvy
 {
     // Start is called before the first frame update
 
@@ -27,6 +29,7 @@ public class EyeSwitch : MonoBehaviour
     public GameObject Cube2;
     public GameObject where1;
     public GameObject where2;
+    bool canSwitch = false;
 
     bool onFirst = true;
 
@@ -37,6 +40,8 @@ public class EyeSwitch : MonoBehaviour
     GameObject which;
     public InputActionReference primaryButton;
     public InputActionReference secondaryButton;
+   
+
 
     bool ugh = false;
 
@@ -58,6 +63,9 @@ public class EyeSwitch : MonoBehaviour
           switching();
         if (Input.GetKeyDown(KeyCode.R))
             resetting();
+        if (Input.GetKeyDown(KeyCode.M))
+            nextLvel();
+        
         //if (_inputData._leftController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out bool pressed) && !ugh)
 
         if (primaryButton.action.triggered)// && !ugh)
@@ -69,7 +77,7 @@ public class EyeSwitch : MonoBehaviour
            // ugh = true;
         }
 
-        if (secondaryButton.action.triggered)// && !ugh)
+        if (secondaryButton.action.triggered && canSwitch)// && !ugh)
         {
             resetting();
 
@@ -83,19 +91,22 @@ public class EyeSwitch : MonoBehaviour
 
 
         if (onFirst)
-            {
-                secondC.transform.SetPositionAndRotation(third.transform.position, firstC.transform.rotation);
-            
-                fourth.transform.SetPositionAndRotation(firstC.transform.position, firstC.transform.rotation);
-                
+        {
+
+            second.transform.position = new Vector3(third.transform.position.x, 1.5f, third.transform.position.z);
+                secondC.transform.rotation = firstC.transform.rotation;
+            fourth.transform.SetPositionAndRotation(first.transform.position, firstC.transform.rotation);
+
         }
-            else
+        else
             {
-                third.transform.SetPositionAndRotation(secondC.transform.position, secondC.transform.rotation);
-            firstC.transform.SetPositionAndRotation(fourth.transform.position, secondC.transform.rotation);
-            
-            }
-        if(Cube1 != null)
+            first.transform.position = new Vector3(fourth.transform.position.x, 1.5f, fourth.transform.position.z);
+
+            firstC.transform.rotation = fourth.transform.rotation;
+            third.transform.SetPositionAndRotation(second.transform.position, secondC.transform.rotation);
+
+        }
+        if (Cube1 != null)
         Cube1.transform.SetPositionAndRotation(where1.transform.position, firstC.transform.rotation);
 
         if (Cube2 != null)
@@ -134,10 +145,11 @@ public class EyeSwitch : MonoBehaviour
 
             yield return new WaitForSeconds(.4f);
 
-            first.gameObject.SetActive(false);
-            third.gameObject.SetActive(false);
+            
             second.gameObject.SetActive(true);
             fourth.gameObject.SetActive(true);
+            first.gameObject.SetActive(false);
+            third.gameObject.SetActive(false);
             onFirst = false;
             Cube1.gameObject.SetActive(false);
         
@@ -181,5 +193,15 @@ public class EyeSwitch : MonoBehaviour
         if(which == 0)
         leftRes = newPos;
         else  rightRes = newPos;
+    }
+
+    void nextLvel()
+    {
+        SceneManager.LoadScene("DemoScene 1");
+    }
+
+    public void solve(bool solved)
+    {
+        canSwitch = true;
     }
 }

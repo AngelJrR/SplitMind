@@ -20,7 +20,7 @@ public class ChangePosition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Camera3")
+        if (other.gameObject.tag == "Camera3" || other.gameObject.tag == "Camera4")
         {
             Debug.Log("Wjaofmqwlm");
             other.gameObject.transform.position = position;

@@ -10,11 +10,13 @@ public class PuzzleListener : MonoBehaviour
     int allSolved = 0;
     
     public List<GameObject> solver = new List<GameObject>();
-
+    MakeSound mk;
 
     // Start is called before the first frame update
     void Start()
     {
+        mk = FindFirstObjectByType<MakeSound>();
+
         foreach (Puzzle puzzle in puzzles)
         {
             puzzle.Listener = this;
@@ -30,9 +32,12 @@ public class PuzzleListener : MonoBehaviour
 
     public void check(bool solved)
     {
-        if(solved)
+        if (solved)
+        {
             allSolved++;
-        else if(allSolved - 1 < 0)
+            mk.halfComplete();
+        } 
+        else if (allSolved - 1 < 0)
             allSolved = 0;
         else
             allSolved--;
@@ -41,6 +46,8 @@ public class PuzzleListener : MonoBehaviour
 
         if (allSolved == puzzles.Count)
         { ready = true;
+            mk.solvedComplete();
+
             Debug.Log("Im ready");
             foreach (GameObject solvy in solver)
             solvy.GetComponent<I_Solvy>().solve(true);
