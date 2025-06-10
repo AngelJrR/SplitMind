@@ -42,7 +42,7 @@ public class TomJerry : MonoBehaviour, I_Solvy
                     Debug.Log("Lefty");
                     if(other.GetComponent<SecondCamera>() != null)
                     other.GetComponent<SecondCamera>().moveSpeed = 1f;
-                    chars.stepOffset += -.1f;
+                    chars.stepOffset += -.2f;
 
 
                 }

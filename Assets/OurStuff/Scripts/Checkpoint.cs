@@ -20,6 +20,7 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.CompareTag("Player"))
         FindFirstObjectByType<EyeSwitch>().newRes(where, type);
     }
 }

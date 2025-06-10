@@ -148,9 +148,10 @@ public class EyeSwitch : MonoBehaviour, I_Solvy
             
             second.gameObject.SetActive(true);
             fourth.gameObject.SetActive(true);
+            onFirst = false;
+
             first.gameObject.SetActive(false);
             third.gameObject.SetActive(false);
-            onFirst = false;
             Cube1.gameObject.SetActive(false);
         
             Cube2.gameObject.SetActive(true);
@@ -163,9 +164,10 @@ public class EyeSwitch : MonoBehaviour, I_Solvy
             yield return new WaitForSeconds(.4f);
             first.gameObject.SetActive(true);
             third.gameObject.SetActive(true);
+            onFirst = true;
+
             second.gameObject.SetActive(false);
             fourth.gameObject.SetActive(false);
-            onFirst = true;
             Cube1.gameObject.SetActive(true);
  
             Cube2.gameObject.SetActive(false);
